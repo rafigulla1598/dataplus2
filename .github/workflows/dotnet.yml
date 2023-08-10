@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: self-hosted
+    runs-on: [self-hosted, windows, x64, use-action]
 
     steps:
     - uses: actions/checkout@v3
