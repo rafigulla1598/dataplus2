@@ -1,0 +1,70 @@
+﻿@inherits PageBase
+@using DataPlusWeb.Client.Pages.Orders
+@inject HttpClient Http
+@inject IPageService PageService
+
+<TelerikTileLayout Columns="1" ColumnSpacing="5" RowSpacing="5" Resizable="true" RowHeight="350">
+    <TileLayoutItems>
+        <TileLayoutItem HeaderText="Search">
+            <Content>
+                <TelerikGridLayout>
+                    <GridLayoutRows>
+                        <GridLayoutRow Height="Auto"></GridLayoutRow>
+                    </GridLayoutRows>
+                    <GridLayoutColumns>
+                        <GridLayoutColumn></GridLayoutColumn>
+                        <GridLayoutColumn></GridLayoutColumn>
+                    </GridLayoutColumns>
+                    <GridLayoutItems>
+                        <GridLayoutItem Column="1">
+                            <OrdersFilterPanel @ref="_filterPanel"></OrdersFilterPanel>
+                        </GridLayoutItem>
+                        <GridLayoutItem Column="2">
+                            <TelerikButton OnClick="@OnSearch">Search</TelerikButton>
+                        </GridLayoutItem>
+                    </GridLayoutItems>
+                </TelerikGridLayout>
+            </Content>
+        </TileLayoutItem>
+        <TileLayoutItem HeaderText="Orders">
+            <Content>
+                <TelerikGrid Data="@_orders"
+                             AutoGenerateColumns="true"
+                             Width="100%"
+                             Height="100%"
+                             Pageable="true"
+                             Sortable="true"
+                             SelectionMode="GridSelectionMode.Single"
+                             OnRowDoubleClick="OnDoubleClick">
+
+                </TelerikGrid>
+            </Content>
+        </TileLayoutItem>
+    </TileLayoutItems>
+</TelerikTileLayout>
+
+
+@code {
+    private IEnumerable<OrderViewModel> _orders;
+    private OrdersFilterPanel _filterPanel;
+
+    protected override void OnInitialized()
+    {
+        _orders = Enumerable.Empty<OrderViewModel>();
+    }
+
+    private async Task<IEnumerable<OrderViewModel>> LoadOrders()
+    {
+        return await Http.GetFromJsonAsync<IEnumerable<OrderViewModel>>($"Orders?orderCategoryCode={_filterPanel.OrderCategoryCodeSelected}");
+    }
+
+    private async Task OnSearch()
+    {
+        _orders = await LoadOrders();
+    }
+
+    private void OnDoubleClick(GridRowClickEventArgs e)
+    {
+        PageService.OpenPage(new PageInfo { PageType = typeof(OrdersDetails), Name = "order-details", Path = "OrderDetails", Title = ((OrderViewModel)e.Item).OrderGroup });
+    }
+}

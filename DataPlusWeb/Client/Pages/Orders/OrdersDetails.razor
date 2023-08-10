@@ -1,0 +1,148 @@
+﻿@inherits PageBase
+@using DataPlusWeb.Client.Pages.Orders
+
+<TelerikWizard @bind-Value="CurrentStep">
+    <WizardSteps>
+
+        <WizardStep Label="Patient">
+            <Content>
+                <TelerikForm Model="@OrderDetails.Patient" Columns="2" ColumnSpacing="20px">
+                    <FormValidation>
+                        <DataAnnotationsValidator></DataAnnotationsValidator>
+                    </FormValidation>
+                    <FormItems>
+                        <FormGroup LabelText="Personal Details">
+                            <FormItem LabelText="First Name*:" Field="@nameof(OrderPatientDetailsViewModel.FirstName)" />
+                            <FormItem LabelText="Last Name*:" Field="@nameof(OrderPatientDetailsViewModel.LastName)" />
+                            <FormItem LabelText="AKA:" Field="@nameof(OrderPatientDetailsViewModel.AKA)" />
+                            <FormItem LabelText="DOB*:" Field="@nameof(OrderPatientDetailsViewModel.DOB)" />
+                            <FormItem LabelText="SSN:" Field="@nameof(OrderPatientDetailsViewModel.SSN)" />
+                            <FormItem LabelText="Case ID:" Field="@nameof(OrderPatientDetailsViewModel.CaseId)" />
+                            <FormItem LabelText="Policy:" Field="@nameof(OrderPatientDetailsViewModel.Policy)" />
+                            <FormItem LabelText="Patient MR /ID #:" Field="@nameof(OrderPatientDetailsViewModel.PatientMRId)" />
+                        </FormGroup>
+                        <FormGroup LabelText="Address / Contact" Columns="3" ColumnSpacing="10px">
+                            <FormItem LabelText="Street Name:" Field="@($"{nameof(OrderPatientDetailsViewModel.Address)}.{nameof(Address.StreetName)}")" ColSpan="3" />
+                            <FormItem LabelText="City:" Field="@($"{nameof(OrderPatientDetailsViewModel.Address)}.{nameof(Address.City)}")" />
+                            <FormItem LabelText="State:" Field="@($"{nameof(OrderPatientDetailsViewModel.Address)}.{nameof(Address.State)}")" />
+                            <FormItem LabelText="Zip:" Field="@($"{nameof(OrderPatientDetailsViewModel.Address)}.{nameof(Address.PostalCode)}")" />
+                            <FormItem LabelText="Phone:" Field="@($"{nameof(OrderPatientDetailsViewModel.Address)}.{nameof(Address.PhoneNumber)}")" ColSpan="3" />
+                            <FormItem LabelText="Fax:" Field="@($"{nameof(OrderPatientDetailsViewModel.Address)}.{nameof(Address.Fax)}")" />
+                            <FormItem LabelText="Mobile:" Field="@($"{nameof(OrderPatientDetailsViewModel.Address)}.{nameof(Address.Mobile)}")" />
+                            <FormItem LabelText="Email:" Field="@($"{nameof(OrderPatientDetailsViewModel.Address)}.{nameof(Address.EmailAddress)}")" ColSpan="3" />
+                        </FormGroup>
+                    </FormItems>
+                </TelerikForm>
+            </Content>
+        </WizardStep>
+
+        <WizardStep Label="Client">
+            <Content>
+                <TelerikForm Model="@OrderDetails.Client" Columns="3" ColumnSpacing="20px">
+                    <FormValidation>
+                        <DataAnnotationsValidator></DataAnnotationsValidator>
+                    </FormValidation>
+                    <FormItems>
+                        <FormGroup LabelText="Client">
+                            <FormItem LabelText="Client*:" Field="@nameof(OrderClientDetailsViewModel.ClientName)" />
+                            <FormItem Field="@nameof(OrderClientDetailsViewModel.OrderCategoryId)" ColSpan="1">
+                                <Template>
+                                    <label for="order-category" class="k-label k-form-label">Order Category:</label>
+                                    <TelerikDropDownList @bind-Value="@SelectedOrderCategoryId"
+                                                         Data="@OrderCategories"
+                                                         ValueField="@nameof(OrderCategory.Id)"
+                                                         TextField="@nameof(OrderCategory.Name)"
+                                                         DefaultText="--Any--"
+                                                         Id="order-category"
+                                                         Width="100%">
+                                        <DropDownListSettings>
+                                            <DropDownListPopupSettings Height="auto"></DropDownListPopupSettings>
+                                        </DropDownListSettings>
+                                    </TelerikDropDownList>
+                                </Template>
+                            </FormItem>
+                            <FormItem Field="@nameof(OrderClientDetailsViewModel.RequesterId)" ColSpan="1">
+                                <Template>
+                                    <label for="order-registerer" class="k-label k-form-label">Requester:</label>
+                                    <TelerikDropDownList @bind-Value="@SelectedOrderRequesterId"
+                                                         Data="@OrderRequesters"
+                                                         ValueField="@nameof(OrderCategory.Id)"
+                                                         TextField="@nameof(OrderCategory.Name)"
+                                                         DefaultText="--Any--"
+                                                         Id="order-registerer"
+                                                         Width="100%">
+                                        <DropDownListSettings>
+                                            <DropDownListPopupSettings Height="auto"></DropDownListPopupSettings>
+                                        </DropDownListSettings>
+                                    </TelerikDropDownList>
+                                </Template>
+                            </FormItem>
+                        </FormGroup>
+                        <FormGroup LabelText="Agent Details" ColumnSpacing="10px">
+                            <FormItem LabelText="Broker ID:" Field="@($"{nameof(OrderClientDetailsViewModel.AgentDetails)}.{nameof(AgentDetailsViewModel.BrokerId)}")" />
+                            <FormItem LabelText="Agency ID:" Field="@($"{nameof(OrderClientDetailsViewModel.AgentDetails)}.{nameof(AgentDetailsViewModel.AgencyId)}")" />
+                            <FormItem LabelText="Agent Name:" Field="@($"{nameof(OrderClientDetailsViewModel.AgentDetails)}.{nameof(AgentDetailsViewModel.AgentName)}")" />
+                            <FormItem LabelText="Agent Phone:" Field="@($"{nameof(OrderClientDetailsViewModel.AgentDetails)}.{nameof(AgentDetailsViewModel.AgentPhone)}")" />
+                            <FormItem LabelText="Agent Email:" Field="@($"{nameof(OrderClientDetailsViewModel.AgentDetails)}.{nameof(AgentDetailsViewModel.AgentEmail)}")" />
+                            <FormItem LabelText="Agent Contact:" Field="@($"{nameof(OrderClientDetailsViewModel.AgentDetails)}.{nameof(AgentDetailsViewModel.AgentContact)}")" />
+                        </FormGroup>
+                    </FormItems>
+                </TelerikForm>
+            </Content>
+        </WizardStep>
+
+        <WizardStep Label="Services">
+        </WizardStep>
+
+        <WizardStep Label="Doctor">
+        </WizardStep>
+
+        <WizardStep Label="Documents">
+        </WizardStep>
+
+        <WizardStep Label="Confirmation">
+        </WizardStep>
+
+    </WizardSteps>
+</TelerikWizard>
+
+
+@code {
+
+    public int CurrentStep { get; set; }
+    public int SelectedOrderCategoryId = 1;
+    public int SelectedOrderRequesterId = 1;
+
+    public OrderDetailsViewModel OrderDetails { get; set; } = new()
+        {
+            Client = new()
+            {
+                OrderCategoryId = 2,
+                RequesterId = 1
+            }
+        };
+
+    public OrderCategory[] OrderCategories { get; set; } = new OrderCategory[]
+    {
+        new() { Id = 1, Name = "APS", Code = "APS" },
+        new() { Id = 2, Name = "Audit", Code = "Audit" },
+        new() { Id = 3, Name = "Claims", Code = "Claims" },
+        new() { Id = 2, Name = "DocDepot", Code = "DocDepot" },
+        new() { Id = 2, Name = "InHouse", Code = "InHouse" },
+        new() { Id = 2, Name = "Ligitation", Code = "Ligitation" },
+        new() { Id = 2, Name = "Other", Code = "Other" },
+        new() { Id = 2, Name = "Pick-up", Code = "Pick-up" },
+        new() { Id = 2, Name = "Prearranged", Code = "Prearranged" },
+        new() { Id = 2, Name = "Re-Open", Code = "Re-Open" }
+    };
+
+    public OrderCategory[] OrderRequesters { get; set; } = new OrderCategory[]
+    {
+        new() { Id = 1, Name = "Joshua Manimbo" },
+        new() { Id = 2, Name = "Martin van de Wildt" },
+    };
+
+    protected override void OnInitialized()
+    {
+    }
+}

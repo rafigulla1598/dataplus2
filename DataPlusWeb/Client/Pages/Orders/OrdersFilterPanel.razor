@@ -1,0 +1,224 @@
+﻿
+<div class="k-form k-form-md k-form-horizontal">
+
+    @*Order Life*@
+    <div class="k-form-field">
+        <label for="order-life" class="k-label k-form-label">Order Life:</label>
+        <div class="k-form-field-wrap">
+            <TelerikDropDownList Data="@OrderLifeList"
+                                 @bind-Value="@OrderLifeCodeSelected"
+                                 TextField="Name"
+                                 ValueField="Code"
+                                 DefaultText="--Any--"
+                                 Id="order-life"
+                                 Width="200px">
+                <DropDownListSettings>
+                    <DropDownListPopupSettings Height="auto"></DropDownListPopupSettings>
+                </DropDownListSettings>
+            </TelerikDropDownList>
+        </div>
+    </div>
+
+    @*Complete type*@
+    <div class="k-form-field">
+        <label for="complete-type" class="k-label k-form-label">Complete Type:</label>
+        <div class="k-form-field-wrap">
+            <TelerikDropDownList Data="@CompleteTypeList"
+                                 @bind-Value="@CompleteTypeCodeSelected"
+                                 TextField="Name"
+                                 ValueField="Code"
+                                 DefaultText="--Any--"
+                                 Id="complete-type"
+                                 Width="200px">
+                <DropDownListSettings>
+                    <DropDownListPopupSettings Height="auto"></DropDownListPopupSettings>
+                </DropDownListSettings>
+            </TelerikDropDownList>
+        </div>
+    </div>
+
+    @*Order category*@
+    <div class="k-form-field">
+        <label for="category" class="k-label k-form-label">Category:</label>
+        <div class="k-form-field-wrap">
+            <TelerikDropDownList Data="@OrderCategoryList"
+                                 @bind-Value="@OrderCategoryCodeSelected"
+                                 TextField="Name"
+                                 ValueField="Code"
+                                 DefaultText="--Any--"
+                                 Id="category"
+                                 Width="200px">
+                <DropDownListSettings>
+                    <DropDownListPopupSettings Height="auto"></DropDownListPopupSettings>
+                </DropDownListSettings>
+            </TelerikDropDownList>
+        </div>
+    </div>
+
+    @*Order Sub category*@
+    <div class="k-form-field">
+        <label for="category" class="k-label k-form-label">Sub Category:</label>
+        <div class="k-form-field-wrap">
+            <TelerikDropDownList Data="@GetOrderSubCategoryList()"
+                                 @bind-Value="@OrderSubCategoryCodeSelected"
+                                 TextField="Name"
+                                 ValueField="Code"
+                                 DefaultText="--Any--"
+                                 Id="category"
+                                 Width="200px">
+                <DropDownListSettings>
+                    <DropDownListPopupSettings Height="auto"></DropDownListPopupSettings>
+                </DropDownListSettings>
+            </TelerikDropDownList>
+        </div>
+    </div>
+
+    @*Order Stage*@
+    <div class="k-form-field">
+        <label for="order-stage" class="k-label k-form-label">Stage:</label>
+        <div class="k-form-field-wrap">
+            <TelerikMultiSelect Data="@OrderStageList"
+                                @bind-Value="@OrderStageCodesSelected"
+                                TextField="Name"
+                                ValueField="Id"
+                                Placeholder="--Any--"
+                                Width="200px"
+                                ClearButton="true"
+                                AutoClose="false"
+                                Id="order-stage">
+            </TelerikMultiSelect>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    public IEnumerable<OrderLife> OrderLifeList { get; set; }
+    public string OrderLifeCodeSelected { get; set; }
+
+    public IEnumerable<OrderCompleteType> CompleteTypeList { get; set; }
+    public string CompleteTypeCodeSelected { get; set; }
+
+    public IEnumerable<OrderCategory> OrderCategoryList { get; set; }
+    public string OrderCategoryCodeSelected { get; set; }
+
+    public IEnumerable<OrderSubCategory> OrderSubCategoryList { get; set; }
+    public string OrderSubCategoryCodeSelected { get; set; }
+
+    public IEnumerable<OrderSubCategory> GetOrderSubCategoryList()
+    {
+        return from s in OrderSubCategoryList
+               where s.OrderCategoryCode == OrderCategoryCodeSelected
+               select s;
+    }
+
+    public IEnumerable<OrderStage> OrderStageList { get; set; }
+    public List<int> OrderStageCodesSelected { get; set; }
+
+    protected override void OnInitialized()
+    {
+        LoadData();
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+    }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+    private void LoadData()
+    {
+        OrderLifeList = new OrderLife[]
+        {
+            new() { Id = 1, Name = "Open", Code = "Open" },
+            new() { Id = 2, Name = "Re-Open", Code = "Re-Open" },
+            new() { Id = 3, Name = "Re-Open With Fee", Code = "Re-Open-With-Fee" }
+        };
+
+        CompleteTypeList = new OrderCompleteType[]
+        {
+            new() { Id = 1, Name = "Cancelled", Code = "Cancelled" },
+            new() { Id = 2, Name = "Closed", Code = "Closed" },
+            new() { Id = 3, Name = "In Process", Code = "In-Process" }
+        };
+
+        OrderCategoryList = new OrderCategory[]
+        {
+            new() { Id = 1, Name = "APS", Code = "APS" },
+            new() { Id = 2, Name = "Audit", Code = "Audit" },
+            new() { Id = 3, Name = "Claims", Code = "Claims" },
+            new() { Id = 2, Name = "DocDepot", Code = "DocDepot" },
+            new() { Id = 2, Name = "InHouse", Code = "InHouse" },
+            new() { Id = 2, Name = "Ligitation", Code = "Ligitation" },
+            new() { Id = 2, Name = "Other", Code = "Other" },
+            new() { Id = 2, Name = "Pick-up", Code = "Pick-up" },
+            new() { Id = 2, Name = "Prearranged", Code = "Prearranged" },
+            new() { Id = 2, Name = "Re-Open", Code = "Re-Open" }
+        };
+
+        OrderSubCategoryList = new OrderSubCategory[]
+        {
+            new() { Id = 1, OrderCategoryCode = "APS", Name = "APS", Code = "APS" },
+            new() { Id = 1, OrderCategoryCode = "APS", Name = "CNR - Duplicate", Code = "CNR-Duplicate" },
+            new() { Id = 1, OrderCategoryCode = "APS", Name = "Other", Code = "Other" },
+            new() { Id = 1, OrderCategoryCode = "APS", Name = "Patient Request", Code = "PatientRequest" },
+
+            new() { Id = 1, OrderCategoryCode = "Audit", Name = "Audit", Code = "Audit" },
+            new() { Id = 1, OrderCategoryCode = "Audit", Name = "CNR - Duplicate", Code = "CNR-Duplicate" },
+            new() { Id = 1, OrderCategoryCode = "Audit", Name = "RADV", Code = "RADV" },
+
+            new() { Id = 1, OrderCategoryCode = "Claims", Name = "Critical Illness", Code = "CriticalIllness" },
+            new() { Id = 1, OrderCategoryCode = "Claims", Name = "Death Claim", Code = "DeathClaim" },
+            new() { Id = 1, OrderCategoryCode = "Claims", Name = "Long Term Care", Code = "LongTermCare" },
+            new() { Id = 1, OrderCategoryCode = "Claims", Name = "Long Term Disability", Code = "LongTermDisability" },
+            new() { Id = 1, OrderCategoryCode = "Claims", Name = "Other", Code = "Other" },
+            new() { Id = 1, OrderCategoryCode = "Claims", Name = "Short Term Disability", Code = "ShortTermDisability" },
+            new() { Id = 1, OrderCategoryCode = "Claims", Name = "Social Security Disability", Code = "SocialSecurityDisability" },
+            new() { Id = 1, OrderCategoryCode = "Claims", Name = "Workers Compensation", Code = "WorkersCompensation" },
+
+            new() { Id = 1, OrderCategoryCode = "DocDepot", Name = "DocDepot", Code = "DocDepot" },
+
+            new() { Id = 1, OrderCategoryCode = "InHouse", Name = "Continuation of Care", Code = "ContinuationofCare" },
+            new() { Id = 1, OrderCategoryCode = "InHouse", Name = "InHouse", Code = "InHouse" },
+
+            new() { Id = 1, OrderCategoryCode = "Ligitation", Name = "Autho Only", Code = "AuthoOnly" },
+            new() { Id = 1, OrderCategoryCode = "Ligitation", Name = "Ligitation", Code = "Ligitation" },
+            new() { Id = 1, OrderCategoryCode = "Ligitation", Name = "Other", Code = "Other" },
+            new() { Id = 1, OrderCategoryCode = "Ligitation", Name = "Patient Request", Code = "PatientRequest" },
+
+            new() { Id = 1, OrderCategoryCode = "Other", Name = "Custom1", Code = "Custom1" },
+
+            new() { Id = 1, OrderCategoryCode = "Pick-up", Name = "Pick-up", Code = "Pick-up" },
+
+            new() { Id = 1, OrderCategoryCode = "Prearranged", Name = "Prearranged", Code = "Prearranged" },
+
+            new() { Id = 1, OrderCategoryCode = "Re-Open", Name = "Re-Open", Code = "Re-Open" },
+        };
+
+        OrderStageList = new OrderStage[]
+        {
+            new() { Id = 1, Name = "New", Code = "New" },
+            new() { Id = 2, Name = "Data Entry", Code = "DataEntry" },
+            new() { Id = 3, Name = "Autho Attached", Code = "AuthoAttached" },
+            new() { Id = 4, Name = "Waiting for Signature", Code = "WaitingforSignature" },
+            new() { Id = 5, Name = "Calling", Code = "Calling" },
+            new() { Id = 6, Name = "Routing", Code = "Routing" },
+            new() { Id = 7, Name = "Driver", Code = "Driver" },
+            new() { Id = 8, Name = "QC", Code = "QC" },
+            new() { Id = 9, Name = "Billing", Code = "Billing" },
+            new() { Id = 10, Name = "Complete", Code = "Complete" },
+            new() { Id = 11, Name = "Shipped", Code = "Shipped" },
+            new() { Id = 12, Name = "Customer Service", Code = "CustomerService" },
+            new() { Id = 13, Name = "Patient Outreach", Code = "PatientOutreach" }
+        };
+    }
+}
