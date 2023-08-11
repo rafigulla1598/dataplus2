@@ -24,7 +24,7 @@ jobs:
   #    run: dotnet add package Telerik.UI.for.Blazor
     - name: add telerik online
       run: dotnet nuget add source https://nuget.telerik.com/nuget 
-          --name telerik.com 
+          --name Telerik.UI.for.Blazor 
           --username ysunnatov@securenx.com 
           --password yaxyo@654321
           --store-password-in-clear-text
