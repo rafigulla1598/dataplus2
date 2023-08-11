@@ -23,8 +23,8 @@ jobs:
  #   - name: /net add
   #    run: dotnet add package Telerik.UI.for.Blazor
     - name: add telerik online
-      run: dotnet nuget add source https://nuget.telerik.com/v3/index.json 
-          --name TelerikOnlineFeed 
+      run: dotnet nuget add source https://nuget.telerik.com/nuget 
+          --name telerik.com 
           --username ysunnatov@securenx.com 
           --password yaxyo@654321
           --store-password-in-clear-text
