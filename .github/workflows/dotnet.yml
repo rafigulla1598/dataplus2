@@ -23,8 +23,7 @@ jobs:
  #   - name: /net add
   #    run: dotnet add package Telerik.UI.for.Blazor
     - name: Restore dependencies
-      run: nuget restore 
-      #DataPlusWeb.sln
+      run: nuget restore DataPlusWeb.sln
     - name: Build
       run: dotnet build --no-restore
     - name: Test
