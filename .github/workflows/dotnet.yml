@@ -21,7 +21,7 @@ jobs:
       with:
         dotnet-version: 7.0.x
     - name: /net add
-      run: dotnet add Telerik.UI.for.Blazor
+      run: dotnet add package Telerik.UI.for.Blazor
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
