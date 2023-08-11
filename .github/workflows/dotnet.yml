@@ -20,17 +20,12 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.203
- #   - name: /net add
-  #    run: dotnet add package Telerik.UI.for.Blazor
-    - name: add telerik online
-      run: dotnet nuget add source https://nuget.telerik.com/nuget 
-          --name Telerik.UI.for.Blazor 
-          --username ysunnatov@securenx.com 
-          --password yaxyo@654321
-          --store-password-in-clear-text
+        
     - name: Restore dependencies
-      run: nuget restore DataPlusWeb.sln
+      run: dotnet restore
+      
     - name: Build
       run: dotnet build --no-restore
+      
     - name: Test
       run: dotnet test --no-build --verbosity normal
