@@ -22,6 +22,8 @@ jobs:
         dotnet-version: 7.0.x
  #   - name: /net add
   #    run: dotnet add package Telerik.UI.for.Blazor
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
     - name: Restore dependencies
       run: nuget restore DataPlusWeb.sln
     - name: Build
