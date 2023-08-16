@@ -30,8 +30,8 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Stop insurance 
-    - run: appcmd stop sites "insurance"
+      run: appcmd stop sites "insurance"
     - name: Publish insurance
       run: dotnet publish -c Release -o ./publish
     - name: Start insurance
-    - run: appcmd start sites "insurance"
+      run: appcmd start sites "insurance"
