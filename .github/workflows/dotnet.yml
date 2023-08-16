@@ -28,10 +28,11 @@ jobs:
       run: dotnet build --no-restore
       
     - name: Test
-      run: dotnet test --no-build --verbosity normal
-    - name: Stop insurance 
-      run: appcmd stop sites "insurance"
+      run: dotnet test --no-build --verbosity normal"
     - name: Publish insurance
       run: dotnet publish -c Release -o ./publish
-    - name: Start insurance
-      run: appcmd start sites "insurance"
+    - name: iis copy project and restart
+      run: |
+        iisreset /stop
+        Copy-Item C:/dev/tools/actions-runner/workflow-usa/dataplus-client/dataplus-client/publish/* C:/inetpub/wwwroot/insurance -Recurse -Force
+        iireset /start
