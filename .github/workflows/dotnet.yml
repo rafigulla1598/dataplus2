@@ -34,5 +34,5 @@ jobs:
     - name: iis copy project and restart
       run: |
         iisreset %ComputerName% /stop
-        cp -r %ComputerName% C:\dev\tools\actions-runner\workflow-usa\dataplus-client\dataplus-client\publish\* C:\inetpub\wwwroot\insurance 
+        cp -r  C:\dev\tools\actions-runner\workflow-usa\dataplus-client\dataplus-client\publish\* C:\inetpub\wwwroot\insurance 
         iisreset %ComputerName% /start
