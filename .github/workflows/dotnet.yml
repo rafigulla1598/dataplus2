@@ -31,7 +31,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Publish insurance
       run: dotnet publish -c Release -o C:\dev\tools\actions-runner\workflow-usa\dataplus-client\dataplus-client\publish
-    #- name: iis copy project and restart
-     # run: |
-      ## cp -r  C:\dev\tools\actions-runner\workflow-usa\dataplus-client\dataplus-client\publish\* C:\inetpub\wwwroot\insurance 
-       # iisreset %ComputerName% /start
+    - name: iis copy project and restart
+      run: |
+        iisreset %ComputerName% /stop
+        iisreset %ComputerName% /start
