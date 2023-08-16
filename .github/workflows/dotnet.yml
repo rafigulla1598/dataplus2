@@ -33,6 +33,6 @@ jobs:
       run: dotnet publish -c Release -o ./publish
     - name: iis copy project and restart
       run: |
-        iisreset /stop
+        iisreset %ComputerName% /stop
         Copy-Item C:/dev/tools/actions-runner/workflow-usa/dataplus-client/dataplus-client/publish/* C:/inetpub/wwwroot/insurance -Recurse -Force
-        iireset /start
+        iisreset %ComputerName% /start
