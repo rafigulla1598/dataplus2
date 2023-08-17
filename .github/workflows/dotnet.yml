@@ -33,5 +33,5 @@ jobs:
       run: dotnet publish -c Release -o C:\dev\tools\actions-runner\workflow-usa\dataplus-client\dataplus-client\publish
     - name: iis copy project and restart
       run: |
-        iisreset  /stop -RunAsAdmin
-        iisreset  /start -RunAsAdmin
+        iisreset  /stop
+        iisreset  /start
