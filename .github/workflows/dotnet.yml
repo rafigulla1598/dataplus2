@@ -26,8 +26,8 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish insurance
-      run: dotnet publish -c Release -o C:\dev\tools\actions-runner\_work\publish
+      run: dotnet publish -c Release -o ./publish
     - name: copy app to iis
-      run: Copy-Item -Path ./pushlish/*  -Destination C:\inetpub\wwwroot\insurance
+      run: Copy-Item -Path ./publish/*  -Destination C:\inetpub\wwwroot\insurance
     - name: run scrypt offline
       run: ./app_offline.ps1
