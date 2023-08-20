@@ -16,10 +16,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
- ## # # - name: Setup .NET
-    #  uses: actions/setup-dotnet@v3
-     # with:
-      #  dotnet-version: 7.0.203
         
     - name: Restore dependencies
       run: dotnet restore
@@ -31,7 +27,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Publish insurance
       run: dotnet publish -c Release -o C:\dev\tools\actions-runner\workflow-usa\dataplus-client\dataplus-client\publish
-    - name: iis copy project and restart
-      run: |
-        iisreset  /stop
-        iisreset  /start
+    - name: copy app to iis
+      run: Copy-Item -Path C:\dev\tools\actions-runner\workflow-usa\dataplus-client\dataplus-client\publish\*  -Destination C:\inetpub\wwwroot\insurance
+    - name: run scrypt offline
+      run: ./app_offline.ps1
