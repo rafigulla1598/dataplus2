@@ -27,8 +27,8 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Publish insurance
       run: dotnet publish -c Release -o ./publish
-    - name: Remove Files && Dirs
-      run: rm C:\dev\tools\actions-runner\projects\* -r -force -verbose
+ #   - name: Remove Files && Dirs
+  #    run: rm C:\dev\tools\actions-runner\projects\* -r -force -verbose
     - name: run offline
       run: New-Item -Path C:\dev\tools\actions-runner\projects -Name "app_offline.htm" -ItemType "file"
     - name: copy app to iis
