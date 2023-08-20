@@ -1,4 +1,4 @@
-$pathToApp = 'C:\dev\tools\actions-runner\workflow-usa\dataplus-client\dataplus-client\publish'
+$pathToApp = 'C:\dev\tools\actions-runner\projects'
 
 
 New-Item -Path $pathToApp -Name "app_offline.htm" -ItemType "file"
