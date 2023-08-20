@@ -32,6 +32,6 @@ jobs:
     #- name: run scrypt offline
     #  run:  C:\Users\ysunnatov\Desktop\app-restart.ps1
     - name: run scrypt offline
-      shell: pwsh
+   #   shell: pwsh
       run: |
         .\app-restart.ps1
