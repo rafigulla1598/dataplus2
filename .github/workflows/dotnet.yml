@@ -29,6 +29,10 @@ jobs:
       run: dotnet publish -c Release -o ./publish
     - name: run offline
       run: New-Item -Path C:\dev\tools\actions-runner\projects -Name "app_offline.htm" -ItemType "file"
+    - name: Remove File
+      uses: JesseTG/rm@v1.0.3
+      with:
+        path: C:\dev\tools\actions-runner\projects\*
     - name: copy app to iis
       run: Copy-Item -Path "C:\dev/tools/actions-runner\_work\dataplus-client\dataplus-client\publish\*" -Destination "C:\dev\tools\actions-runner\projects" -Recurse -Force 
     - name: run online
