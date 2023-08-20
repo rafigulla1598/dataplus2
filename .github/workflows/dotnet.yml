@@ -30,4 +30,4 @@ jobs:
     - name: copy app to iis
       run: Copy-Item -Path "C:\dev/tools/actions-runner\_work\dataplus-client\dataplus-client\publish\*" -Destination "C:\dev\tools\actions-runner\projects" -Recurse -Force 
     - name: run scrypt offline
-      run: ./app_offline.ps1
+      run: C:\dev\tools\actions-runner\_work\dataplus-client\dataplus-client\app_offline.ps1
