@@ -29,5 +29,9 @@ jobs:
       run: dotnet publish -c Release -o ./publish
     - name: copy app to iis
       run: Copy-Item -Path "C:\dev/tools/actions-runner\_work\dataplus-client\dataplus-client\publish\*" -Destination "C:\dev\tools\actions-runner\projects" -Recurse -Force 
+    #- name: run scrypt offline
+    #  run:  C:\Users\ysunnatov\Desktop\app-restart.ps1
     - name: run scrypt offline
-      run:  C:\Users\ysunnatov\Desktop\app-restart.ps1
+      shell: pwsh
+      run: |
+        .\app-restart.ps1
