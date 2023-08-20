@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: usa-action
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v3
@@ -26,8 +26,8 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish insurance
-      run: dotnet publish -c Release -o C:\dev\tools\actions-runner\workflow-usa\dataplus-client\dataplus-client\publish
+      run: dotnet publish -c Release -o C:\dev\tools\actions-runner\_work\publish
     - name: copy app to iis
-      run: Copy-Item -Path C:\dev\tools\actions-runner\workflow-usa\dataplus-client\dataplus-client\pushlish\*  -Destination C:\inetpub\wwwroot\insurance
+      run: Copy-Item -Path ./pushlish/*  -Destination C:\inetpub\wwwroot\insurance
     - name: run scrypt offline
       run: ./app_offline.ps1
