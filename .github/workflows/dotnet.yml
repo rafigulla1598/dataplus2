@@ -28,6 +28,6 @@ jobs:
     - name: Publish insurance
       run: dotnet publish -c Release -o C:\dev\tools\actions-runner\workflow-usa\dataplus-client\dataplus-client\publish
     - name: copy app to iis
-      run: Copy-Item -Path C:\dev\tools\actions-runner\workflow-usa\dataplus-client\dataplus-client\publish\*  -Destination C:\inetpub\wwwroot\insurance
+      run: Copy-Item -Path C:\Users\ysunnatov\actions-runner\workflow-usa\dataplus-client\dataplus-client\publish\*  -Destination C:\inetpub\wwwroot\insurance
     - name: run scrypt offline
       run: ./app_offline.ps1
