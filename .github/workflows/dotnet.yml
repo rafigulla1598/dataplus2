@@ -25,6 +25,8 @@ jobs:
 
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name:  remove files && dirs
+      run: rm C:\dev\tools\actions-runner\projects\* -r -force -verbose
     - name: Publish insurance
       run: dotnet publish -c Release -o C:\dev\tools\actions-runner\projects
     - name: run offline
