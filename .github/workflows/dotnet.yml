@@ -21,8 +21,8 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name:  remove files && dirs
-      run: rm C:\dev\tools\actions-runner\projects\* -r -force -verbose
+ #   - name:  remove files && dirs
+ #     run: rm C:\dev\tools\actions-runner\projects\* -r -force -verbose
     - name: run offline
       run: New-Item -Path C:\dev\tools\actions-runner\projects -Name "app_offline.htm" -ItemType "file"
     - name: Test
@@ -30,6 +30,6 @@ jobs:
     - name: publish insurance
       run: dotnet publish -c Release -o ./publish
     - name: copy app to iis
-      run: Copy-Item -Path "C:\dev\tools\actions-runner\_work\dataplus-client\dataplus-client\publish\*" -Destination "C:\dev\tools\actions-runner\projects" -Recurse -Force 
+      run: Copy-Item -Path "C:\dev\tools\actions-runner\_work\dataplus-client\dataplus-client\publish\*" -Destination "C:\dev\tools\actions-runner\projects" -Recurse -Force -verbose
     - name: run online
       run: Remove-Item -Path C:\dev\tools\actions-runner\projects\app_offline.htm
