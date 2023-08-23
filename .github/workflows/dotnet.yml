@@ -17,19 +17,17 @@ jobs:
     steps:
     - uses: actions/checkout@v3
         
-    - name: Restore dependencies
+    - name: restore dependencies
       run: dotnet restore
-    - name: Build
+    - name: build
       run: dotnet build --no-restore
- #   - name:  remove files && dirs
- #     run: rm C:\dev\tools\actions-runner\projects\* -r -force -verbose
-    - name: run offline
+    - name: set placeholder html
       run: New-Item -Path C:\dev\tools\actions-runner\projects -Name "app_offline.htm" -ItemType "file"
-    - name: Test
+    - name: unit test
       run: dotnet test --no-build --verbosity normal
-    - name: publish insurance
+    - name: publish deployment
       run: dotnet publish -c Release -o ./publish
     - name: copy app to iis
       run: Copy-Item -Path "C:\dev\tools\actions-runner\_work\dataplus-client\dataplus-client\publish\*" -Destination "C:\dev\tools\actions-runner\projects" -Recurse -Force -verbose
-    - name: run online
+    - name: remove placeholder html
       run: Remove-Item -Path C:\dev\tools\actions-runner\projects\app_offline.htm
