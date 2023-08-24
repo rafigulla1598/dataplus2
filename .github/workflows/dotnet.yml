@@ -19,7 +19,8 @@ jobs:
         
     - name: restore dependencies
       shell: pwsh
-      run: .\build.ps1 -Restore -Configuration TestInstance --project ".\DataPlusWeb.Client.csproj"
+      run: |
+        .\build.ps1 -Restore -Configuration TestInstance --project ".\DataPlusWeb.Client.csproj"
  #   - name: build
 #      run: ./build.ps1 -Restore -Configuration TestInstance -Project "src/api.datasub.csproj"
    # - name: set placeholder html
