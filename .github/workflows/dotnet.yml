@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: self-hosted
+    runs-on: dataplus-action
 
     steps:
     - uses: actions/checkout@v3
