@@ -1,8 +1,8 @@
 param
 (
-    [Parameter(Mandatory=$true)]
+  #  [Parameter(Mandatory=$true)]
    # [string] $Project,
-    [string] $Configuration,
+  #  [string] $Configuration,
 
     [switch]$Restore,
     [switch]$Build,
@@ -11,6 +11,7 @@ param
     [switch]$PreDeploy,
     [switch]$Deploy,
     [switch]$Project,
+    [switch]$Configuration,
 
     [string]$DeployWebsite,
     [string]$DeployUrl,
