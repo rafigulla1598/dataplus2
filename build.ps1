@@ -10,6 +10,7 @@ param
     [switch]$Publish,
     [switch]$PreDeploy,
     [switch]$Deploy,
+    [switch]$Project,
 
     [string]$DeployWebsite,
     [string]$DeployUrl,
