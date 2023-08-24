@@ -17,10 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
         
-    - name: restore dependencies
+    - name: Build Module
       shell: pwsh
-      run: |
-        .\build.ps1 -Restore -Configuration TestInstance --project ".\DataPlusWeb.Client.csproj"
+      run:  .\build.ps1 -Restore -Project .\DataPlusWeb\Client\DataPlusWeb.Client.csproj
  #   - name: build
 #      run: ./build.ps1 -Restore -Configuration TestInstance -Project "src/api.datasub.csproj"
    # - name: set placeholder html
