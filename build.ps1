@@ -3,9 +3,11 @@ param
   #  [Parameter(Mandatory=$true)]
    # [string] $Project,
   #  [string] $Configuration,
-    [Parameter(Mandatory = $true)]
+  (
+    #[Parameter(Mandatory = $true)]
     [System.String]
     $Project
+    )
 
     [switch]$Restore,
     [switch]$Build,
@@ -13,7 +15,7 @@ param
     [switch]$Publish,
     [switch]$PreDeploy,
     [switch]$Deploy,
-  #  [switch]$Project,
+    [switch]$Project,
     [switch]$Configuration,
 
     [string]$DeployWebsite,
