@@ -4,7 +4,7 @@ param
    # [string] $Project,
   #  [string] $Configuration,
   (
-    #[Parameter(Mandatory = $true)]
+    [Parameter(Mandatory = $true)]
     [System.String]
     $Project
     )
