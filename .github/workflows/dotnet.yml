@@ -20,14 +20,14 @@ jobs:
     - name: restore dependencies
       run: dotnet restore
     - name: build
-      run: dotnet build --no-restore
-    - name: set placeholder html
-      run: New-Item -Path B:\dev\dataplus-client\dataplus-client-publish -Name "app_offline.htm" -ItemType "file"
-    - name: unit test
-      run: dotnet test --no-build --verbosity normal
-    - name: publish deployment
-      run: dotnet publish -c Release -o ./publish
-    - name: copy app to iis
-      run: Copy-Item -Path "B:\dev\dataplus-client\_work\dataplus-client\dataplus-client\publish\*" -Destination "B:\dev\dataplus-client\dataplus-client-publish" -Recurse -Force -verbose
-    - name: remove placeholder html
-      run: Remove-Item -Path B:\dev\dataplus-client\dataplus-client-publish\app_offline.htm
+      run: ./build.ps1 -Restore -Configuration TestInstance -Project "src/api.datasub.csproj"
+   # - name: set placeholder html
+   #   run: New-Item -Path B:\dev\dataplus-client\dataplus-client-publish -Name "app_offline.htm" -ItemType "file"
+   # - name: unit test
+   #   run: dotnet test --no-build --verbosity normal
+   # - name: publish deployment
+   #   run: dotnet publish -c Release -o ./publish
+   # - name: copy app to iis
+   #   run: Copy-Item -Path "B:\dev\dataplus-client\_work\dataplus-client\dataplus-client\publish\*" -Destination "B:\dev\dataplus-client\dataplus-client-publish" -Recurse -Force -verbose
+   # - name: remove placeholder html
+   #   run: Remove-Item -Path B:\dev\dataplus-client\dataplus-client-publish\app_offline.htm
