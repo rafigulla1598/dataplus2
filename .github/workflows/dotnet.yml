@@ -18,9 +18,9 @@ jobs:
     - uses: actions/checkout@v3
         
     - name: restore dependencies
-      run: dotnet restore
-    - name: build
-      run: ./build.ps1 -Restore -Configuration TestInstance -Project "src/api.datasub.csproj"
+      run: ./build.ps1 -Restore -Configuration TestInstance -Project ".\DataPlusWeb.Client.csproj"
+ #   - name: build
+#      run: ./build.ps1 -Restore -Configuration TestInstance -Project "src/api.datasub.csproj"
    # - name: set placeholder html
    #   run: New-Item -Path B:\dev\dataplus-client\dataplus-client-publish -Name "app_offline.htm" -ItemType "file"
    # - name: unit test
