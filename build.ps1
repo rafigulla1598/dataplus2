@@ -1,7 +1,7 @@
 param
 (
     [Parameter(Mandatory=$true)]
-    [string] $Project,
+   # [string] $Project,
     [string] $Configuration,
 
     [switch]$Restore,
