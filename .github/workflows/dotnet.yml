@@ -26,7 +26,7 @@ jobs:
     - name: run stop app-pool
       run: runas.exe /savecred /user:EZCOPYONLINE\ysunnatov "C:\Windows\System32\inetsrv\appcmd stop sites dataplus"
     - name: run stop app-pool
-      run: runas.exe /savecred /user:EZCOPYONLINE\ysunnatov "C:\Windows\System32\inetsrv\appcmd start sites dataplus"
+      run: echo yaxyo@654321 | runas.exe /savecred /user:EZCOPYONLINE\ysunnatov "C:\Windows\System32\inetsrv\appcmd stop sites dataplus"
  #   - name: build
 #      run: ./build.ps1 -Restore -Configuration TestInstance -Project "src/api.datasub.csproj"
    # - name: set placeholder html
