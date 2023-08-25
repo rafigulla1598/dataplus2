@@ -24,7 +24,7 @@ jobs:
     - name: run publish scrypt
       run: ./build.ps1 -Publish -Configuration TestInstance -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj
     - name: run app.cmd
-      run: C:\Windows\System32\inetsrv\appcmd start sites "dataplus"
+      run: C:\Windows\System32\inetsrv\appcmd start sites "dataplus"  -RunAsAdmin
  #   - name: build
 #      run: ./build.ps1 -Restore -Configuration TestInstance -Project "src/api.datasub.csproj"
    # - name: set placeholder html
