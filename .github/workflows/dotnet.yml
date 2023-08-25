@@ -17,8 +17,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
         
-    - name: run scrypt offline
-      run: ./build.ps1 -Restore -Configuration TestInstance -Project ./DataPlusWeb/Client/DataPlusWeb.Client.csproj
+    - name: run restore scrypt
+      run: .\build.ps1 -Restore -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj
+    - name: run build scrypt
+      run: .\build.ps1 -Build -Configuration TestInstance -Project .\DataPlusWeb\Server
+    - name: run publish scrypt
+      run: .\build.ps1 -Publish -Configuration TestInstance -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj
  #   - name: build
 #      run: ./build.ps1 -Restore -Configuration TestInstance -Project "src/api.datasub.csproj"
    # - name: set placeholder html
