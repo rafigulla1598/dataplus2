@@ -13,10 +13,10 @@ param
     [switch]$Deploy,
 
     # variables PreDeploy && Deploy
-    $WebSiteName = "testuz",
-    $Domain_name = "test.uz",
-    $PathCurrentInfo = "C:\inetpub\wwwroot",
-    $PathNewInfo = "C:\inetpub\new-root",
+    $WebSiteName = "testuzqaz",
+    $Domain_name = "test.uzqaz",
+    $PathCurrentInfo = "B:\dev\dataplus-client\_work\dataplus-client\dataplus-client",
+    $PathNewInfo = "B:\dev\dataplus-client\_work\dataplus-client\dataplus-demo",
     $Port = 80
 
 )
