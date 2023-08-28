@@ -24,7 +24,7 @@ jobs:
     - name: run publish scrypt
       run: ./build.ps1 -Publish -Configuration TestInstance -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj
     - name: run predeploy scrypt
-    - run: ./build.ps1 -PreDeploy -Project $false
+      run: ./build.ps1 -PreDeploy -Project $false
 #      run: ./build.ps1 -Restore -Configuration TestInstance -Project "src/api.datasub.csproj"
    # - name: set placeholder html
    #   run: New-Item -Path B:\dev\dataplus-client\dataplus-client-publish -Name "app_offline.htm" -ItemType "file"
