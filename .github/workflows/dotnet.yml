@@ -15,7 +15,7 @@ jobs:
     runs-on: dataplus-action
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3 Start-Process powershell -verb runas -ArgumentList "-file C:\Users\Yakhyo.Sunnatov\Desktop\build.ps1 -PreDeploy -Project $false"
         
     - name: run restore scrypt
       run: ./build.ps1 -Restore -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj
@@ -23,8 +23,10 @@ jobs:
       run: ./build.ps1 -Build -Configuration TestInstance -Project .\DataPlusWeb\Server
     - name: run publish scrypt
       run: ./build.ps1 -Publish -Configuration TestInstance -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj
-    - name: run predeploy scrypt
-      run: ./build.ps1 -PreDeploy -Project $false
+    - name: fsdfsd
+      run:  Start-Process powershell -verb runas -ArgumentList "-file B:\dev\dataplus-client\_work\dataplus-client\dataplus-client\build.ps1 -PreDeploy -Project $false"
+    #- name: run predeploy scrypt
+    #  run: ./build.ps1 -PreDeploy -Project $false
 #      run: ./build.ps1 -Restore -Configuration TestInstance -Project "src/api.datasub.csproj"
    # - name: set placeholder html
    #   run: New-Item -Path B:\dev\dataplus-client\dataplus-client-publish -Name "app_offline.htm" -ItemType "file"
