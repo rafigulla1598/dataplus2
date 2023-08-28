@@ -1,20 +1,24 @@
 param
-(
+(    
+    #variables Restore && Build && Publish
     [Parameter(Mandatory=$true)]
   
     [string]$Project=$true,
-    [string]$Configuration=$true, 
+    [string]$Configuration=$true,  
     [switch]$Restore,
     [switch]$Build,
     [switch]$Test,
-    [switch]$Publish
-   # [switch]$PreDeploy,
-   # [switch]$Deploy,
+    [switch]$Publish,
+    [switch]$PreDeploy,
+    [switch]$Deploy,
 
-    #[string]$DeployWebsite,
-    #[string]$DeployUrl,
-    #[string]$DeployRoot,
-    #[string]$DeployTag
+    # variables PreDeploy && Deploy
+    $WebSiteName = "testuz",
+    $Domain_name = "test.uz",
+    $PathCurrentInfo = "C:\inetpub\wwwroot",
+    $PathNewInfo = "C:\inetpub\new-root",
+    $Port = 80
+
 )
 $ErrorActionPreference = "stop"
 
@@ -41,21 +45,21 @@ if ($Publish) {
 
 if ($PreDeploy) {
 
-    #Copy artifacts to new physical directory: $(CI_WEBSITES_ROOT)\$CI_WEBSITE_NAME\$CI_COMMIT_ID
-    # Copy "obj/publish" to $(CI_WEBSITES_ROOT)\$CI_WEBSITE_NAME\$CI_COMMIT_ID
-
-    # use WebAdminitration module for powershell, see https://learn.microsoft.com/en-us/powershell/module/webadministration/?view=windowsserver2022-ps
-    #Check website whether it exists or not, if exists e; otherwise b;
-    #Create website with specified name;
-    #Set specified website url to the bindings;
-    #Configure HTTPS bindings too with HARD coded CERT
-    #continue next step
+    # Import web module
+      & Import-Module WebAdministration
+    # create application pool in IIS
+      & New-WebAppPool -Name $WebSiteName  
+    # create new web site in IIS
+      & New-Website -Name $WebSiteName -ApplicationPool $WebSiteName -HostHeader $Domain_name -PhysicalPath $PathNewInfo  -Port $Port
+    # copy new path
+      & Copy-Item -Path "$PathCurrentInfo\*" -Destination "$PathNewInfo" -Recurse -Force -verbose
+    
 }
 
 if ($Deploy) {
-    #Switch website physical path to the new physical directory.
+    #switch new path
+    Set-Content $PathNewInfo\default.htm “PSCreated Default Page”
 }
-
 
 # samples
 #  ./build.ps1 -Restore -Configuration TestInstance -Project "src/api.datasub.csproj"
