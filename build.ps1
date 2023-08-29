@@ -4,7 +4,8 @@ param
     [Parameter(Mandatory=$true)]
   
     [string]$Project=$true,
-    [string]$Configuration=$true,  
+    [string]$Configuration=$true,
+    [string]$Output=$true,
     [switch]$Restore,
     [switch]$Build,
     [switch]$Test,
