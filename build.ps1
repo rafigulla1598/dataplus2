@@ -5,13 +5,14 @@ param
   
     [string]$Project=$true,
     [string]$Configuration=$true,
-    [string]$Output=$true,
     [switch]$Restore,
     [switch]$Build,
     [switch]$Test,
     [switch]$Publish,
     [switch]$PreDeploy,
     [switch]$Deploy,
+
+    $Output = "${GIHUB_SHA}",
 
     # variables PreDeploy && Deploy
     $WebSiteName = "testuzqaz",
