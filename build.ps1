@@ -12,7 +12,7 @@ param
     [switch]$PreDeploy,
     [switch]$Deploy,
 
-    $Output = "${GIHUB_SHA}",
+    #$Output = "${GIHUB_SHA}",
 
     # variables PreDeploy && Deploy
     $WebSiteName = "testuzqaz",
