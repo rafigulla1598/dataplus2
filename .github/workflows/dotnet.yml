@@ -10,8 +10,10 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  tag-image:
+  build:
+  
     runs-on: dataplus-action
+  
     steps:
  #   - uses: actions/checkout@v3
     - id: commit
