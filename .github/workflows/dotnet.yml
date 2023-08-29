@@ -15,7 +15,7 @@ jobs:
     runs-on: dataplus-action
 
     steps:
-    - uses: actions/checkout@v3 Start-Process powershell -verb runas -ArgumentList "-file C:\Users\Yakhyo.Sunnatov\Desktop\build.ps1 -PreDeploy -Project $false"
+    - uses: actions/checkout@v3
         
     - name: run restore scrypt
       run: ./build.ps1 -Restore -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj
