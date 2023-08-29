@@ -10,12 +10,10 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  build:
-
+  tag-image:
     runs-on: dataplus-action
-
     steps:
-   # - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
     - id: commit
       uses: prompt/actions-commit-hash@v2
       with:
