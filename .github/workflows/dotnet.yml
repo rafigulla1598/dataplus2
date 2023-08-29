@@ -5,9 +5,9 @@ name: .NET
 
 on:
   push:
-    branches: [ "${{ github.head_ref }}.${{ github.sha }}" ]
+    branches: [ "dev ${{ github.head_ref }}.${{ github.sha }}" ]
   pull_request:
-    branches: [ "${{ github.head_ref }}.${{ github.sha }}" ]
+    branches: [ "dev ${{ github.head_ref }}.${{ github.sha }}" ]
 
 jobs:
   build:
