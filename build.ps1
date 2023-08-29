@@ -39,7 +39,7 @@ if ($Test) {
 
 if ($Publish) {
     # Starting publish
-    & dotnet publish --configuration $Configuration --no-build  $Project --output ${github.sha}
+    & dotnet publish --configuration $Configuration --no-build  $Project --output $Output
     if(!$?) { Exit $LASTEXITCODE }
 }
 
