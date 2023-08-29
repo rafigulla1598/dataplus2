@@ -5,9 +5,9 @@ name: .NET
 
 on:
   push:
-    branches: [ "dev ${{ github.head_ref }}.${{ github.sha }}" ]
+    branches: [ "dev" ]
   pull_request:
-    branches: [ "dev ${{ github.head_ref }}.${{ github.sha }}" ]
+    branches: [ "dev" ]
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
      #   tags: ${{ steps.commit.outputs.short }}
         
     - name: run restore scrypt
-      run: ./build.ps1 -Restore -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj
+      run: ./build.ps1 -Restore -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj ${{ github.head_ref }}.${{ github.sha }}
     - name: run build scrypt
       run: ./build.ps1 -Build -Configuration TestInstance -Project .\DataPlusWeb\Server
     - name: run publish scrypt
