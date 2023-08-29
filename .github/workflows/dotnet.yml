@@ -22,7 +22,7 @@ jobs:
     - name: run build scrypt
       run: ./build.ps1 -Build -Configuration TestInstance -Project .\DataPlusWeb\Server
     - name: run publish scrypt
-      run: ./build.ps1 -Publish -Configuration TestInstance -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj
+      run: ./build.ps1 -Publish -Configuration TestInstance -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj --output "${GITHUB_SHA}"
 ##    - name: fsdfsd
  #     run:  Start-Process powershell -verb runas -ArgumentList "-file B:\dev\dataplus-client\_work\dataplus-client\dataplus-client\build.ps1 -PreDeploy -Project $false"
     #- name: run predeploy scrypt
