@@ -15,7 +15,12 @@ jobs:
     runs-on: dataplus-action
 
     steps:
-    - uses: actions/checkout@v3
+   # - uses: actions/checkout@v3
+    - id: commit
+      uses: prompt/actions-commit-hash@v2
+      with:
+        push: true
+        tags: ${{ steps.commit.outputs.short }}
         
     - name: run restore scrypt
       run: ./build.ps1 -Restore -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj
