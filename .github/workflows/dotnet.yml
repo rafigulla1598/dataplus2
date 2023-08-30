@@ -16,8 +16,7 @@ jobs:
   
     steps:
     - uses: actions/checkout@v3
-
-        
+      
     - name: run restore scrypt
       run: ./build.ps1 -Restore -Project ${{ vars.CI_ROOT_SPACE }} ${{ github.head_ref }}.${{ github.sha }}
     - name: run build scrypt
@@ -29,7 +28,7 @@ jobs:
         mkdir ${{ vars.CI_COPY_SPACE }}\${{ github.head_ref }}.${{ github.sha }}
         Copy-Item -Path ".\${{ github.head_ref }}.${{ github.sha }}\*" -Destination "${{ vars.CI_COPY_SPACE }}\${{ github.head_ref }}.${{ github.sha }}" -Recurse -Force -verbose
     - name: Deploy
-      run: ./build.ps1 -Deploy -Project $false  -PhysicalPath .\${{ github.head_ref }}.${{ github.sha }}\
+      run: Start-Process powershell -verb runas -ArgumentList "-file ./build.ps1 -Deploy -Project $false  -PhysicalPath .\${{ github.head_ref }}.${{ github.sha }}\"
 ##    - name: fsdfsd
  #     run:  Start-Process powershell -verb runas -ArgumentList "-file B:\dev\dataplus-client\_work\dataplus-client\dataplus-client\build.ps1 -PreDeploy -Project $false"
     #- name: run predeploy scrypt
