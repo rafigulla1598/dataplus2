@@ -1,4 +1,4 @@
-### This workflow will build a .NET project#####
+### This workflow will build a .NET project######
 ## For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
 name: .NET
@@ -16,11 +16,6 @@ jobs:
   
     steps:
     - uses: actions/checkout@v3
-   # - id: commit
-    #  uses: prompt/actions-commit-hash@v2
-     # with:
-     #   push: true
-     #   tags: ${{ steps.commit.outputs.short }}
         
     - name: run restore scrypt
       run: ./build.ps1 -Restore -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj ${{ github.head_ref }}.${{ github.sha }}
