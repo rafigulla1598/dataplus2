@@ -18,14 +18,14 @@ jobs:
     - uses: actions/checkout@v3
       
     - name: run restore scrypt
-      run: ./build.ps1 -Restore -Project ${{ vars.CI_ROOT_SPACE }} ${{ github.head_ref }}.${{ github.sha }}
+      run: ./build.ps1 -Restore -Project ${{ vars.CI_SUB_DIR }} ${{ github.head_ref }}.${{ github.sha }}
     - name: run build scrypt
-      run: ./build.ps1 -Build -Configuration TestInstance -Project ${{ vars.CI_ROOT_SPACE }} ${{ github.head_ref }}.${{ github.sha }}
+      run: ./build.ps1 -Build -Configuration TestInstance -Project ${{ vars.CI_SUB_SPACE }} ${{ github.head_ref }}.${{ github.sha }}
     - name: run publish scrypt
-      run: ./build.ps1 -Publish -Configuration TestInstance -Project ${{ vars.CI_ROOT_SPACE }} ${{ github.head_ref }}.${{ github.sha }}
+      run: ./build.ps1 -Publish -Configuration TestInstance -Project ${{ vars.CI_SUB_SPACE }} ${{ github.head_ref }}.${{ github.sha }}
     - name: PreDeploy
       run: | 
         mkdir ${{ vars.CI_COPY_SPACE }}\${{ github.head_ref }}.${{ github.sha }}
         Copy-Item -Path ".\${{ github.head_ref }}.${{ github.sha }}\*" -Destination "${{ vars.CI_COPY_SPACE }}\${{ github.head_ref }}.${{ github.sha }}" -Recurse -Force -verbose
     - name: Deploy
-      run: Start-Process powershell -verb runas -ArgumentList "-file ./build.ps1 -Deploy -Project $false  -PhysicalPath ${{ vars.CI_ROOT_SPACE }}\${{ github.head_ref }}.${{ github.sha }}\"
+      run: Start-Process powershell -verb runas -ArgumentList "-file ./build.ps1 -Deploy -Project $false  -PhysicalPath ${{ vars.CI_ROOT_DIR }}\${{ github.head_ref }}.${{ github.sha }}\"
