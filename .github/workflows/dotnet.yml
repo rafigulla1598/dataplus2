@@ -19,11 +19,11 @@ jobs:
 
         
     - name: run restore scrypt
-      run: ./build.ps1 -Restore -Project .\DataPlusWeb\Server\ ${{ github.head_ref }}.${{ github.sha }}
+      run: ./build.ps1 -Restore -Project ${{ vars.CI_ROOT_SPACE }} ${{ github.head_ref }}.${{ github.sha }}
     - name: run build scrypt
-      run: ./build.ps1 -Build -Configuration TestInstance -Project .\DataPlusWeb\Server ${{ github.head_ref }}.${{ github.sha }}
+      run: ./build.ps1 -Build -Configuration TestInstance -Project ${{ vars.CI_ROOT_SPACE }} ${{ github.head_ref }}.${{ github.sha }}
     - name: run publish scrypt
-      run: ./build.ps1 -Publish -Configuration TestInstance -Project .\DataPlusWeb\Server\ ${{ github.head_ref }}.${{ github.sha }}
+      run: ./build.ps1 -Publish -Configuration TestInstance -Project ${{ vars.CI_ROOT_SPACE }} ${{ github.head_ref }}.${{ github.sha }}
     - name: mkdir
       run: mkdir ${{ vars.CI_COPY_SPACE }}\${{ github.head_ref }}.${{ github.sha }}.${{ steps.short-sha.outputs.sha }}
     - name: copy
