@@ -46,16 +46,10 @@ if ($Publish) {
 }
 
 if ($PreDeploy) {
-
-    # Import web module
-      & Import-Module WebAdministration
-    # create application pool in IIS
-      & New-WebAppPool -Name $WebSiteName  
-    # create new web site in IIS
-      & New-Website -Name $WebSiteName -ApplicationPool $WebSiteName -HostHeader $Domain_name -PhysicalPath $PathNewInfo  -Port $Port
+     git_hash=$(git rev-parse --short "$GITHUB_SHA")
+     git_branch=${GITHUB_REF#refs/heads/}
     # copy new path
-      & Copy-Item -Path "$PathCurrentInfo\*" -Destination "$PathNewInfo" -Recurse -Force -verbose
-    
+      & Copy-Item -Path ".\${git_branch}.${git_hash}\*" -Destination "${git_branch}.${git_hash}" -Recurse -Force -verbose    
 }
 
 if ($Deploy) {
