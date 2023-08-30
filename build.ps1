@@ -46,10 +46,8 @@ if ($Publish) {
 }
 
 if ($PreDeploy) {
-     git_hash=$(git rev-parse --short "$GITHUB_SHA")
-     git_branch=${GITHUB_REF#refs/heads/}
     # copy new path
-      & Copy-Item -Path ".\${git_branch}.${git_hash}\*" -Destination "$PathNewInfo\${git_branch}.${git_hash}" -Recurse -Force -verbose    
+      & Copy-Item -Path ".\${{ github.head_ref }}.${{ github.sha }}.${{ steps.short-sha.outputs.sha }}\*" -Destination "B:\dev\dataplus-client\dataplus-client-publish\${{ github.head_ref }}.${{ github.sha }}.${{ steps.short-sha.outputs.sha }}" -Recurse -Force -verbose   
 }
 
 if ($Deploy) {
