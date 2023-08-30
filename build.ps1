@@ -12,7 +12,7 @@ param
     [switch]$PreDeploy,
     [switch]$Deploy,
 
-
+    $Output = ""
     # variables PreDeploy && Deploy
     $WebSiteName = "deployment",
     $Domain_name = "deployment.com",
