@@ -18,7 +18,7 @@ param
     $WebSiteName = "testuzqaz",
     $Domain_name = "test.uzqaz",
     $PathCurrentInfo = "B:\dev\dataplus-client\_work\dataplus-client\dataplus-client",
-    $PathNewInfo = "B:\dev\dataplus-client\_work\dataplus-client\dataplus-demo",
+    $PathNewInfo = "B:\dev\dataplus-client\dataplus-client-publish",
     $Port = 80
 
 )
@@ -49,7 +49,7 @@ if ($PreDeploy) {
      git_hash=$(git rev-parse --short "$GITHUB_SHA")
      git_branch=${GITHUB_REF#refs/heads/}
     # copy new path
-      & Copy-Item -Path ".\${git_branch}.${git_hash}\*" -Destination "${git_branch}.${git_hash}" -Recurse -Force -verbose    
+      & Copy-Item -Path ".\${git_branch}.${git_hash}\*" -Destination "$PathNewInfo\${git_branch}.${git_hash}" -Recurse -Force -verbose    
 }
 
 if ($Deploy) {
