@@ -29,18 +29,3 @@ jobs:
         Copy-Item -Path ".\${{ github.head_ref }}.${{ github.sha }}\*" -Destination "${{ vars.CI_COPY_SPACE }}\${{ github.head_ref }}.${{ github.sha }}" -Recurse -Force -verbose
     - name: Deploy
       run: Start-Process powershell -verb runas -ArgumentList "-file ./build.ps1 -Deploy -Project $false  -PhysicalPath .\${{ github.head_ref }}.${{ github.sha }}\"
-##    - name: fsdfsd
- #     run:  Start-Process powershell -verb runas -ArgumentList "-file B:\dev\dataplus-client\_work\dataplus-client\dataplus-client\build.ps1 -PreDeploy -Project $false"
-    #- name: run predeploy scrypt
-    #  run: ./build.ps1 -PreDeploy -Project $false
-#      run: ./build.ps1 -Restore -Configuration TestInstance -Project "src/api.datasub.csproj"
-   # - name: set placeholder html
-   #   run: New-Item -Path B:\dev\dataplus-client\dataplus-client-publish -Name "app_offline.htm" -ItemType "file"
-   # - name: unit test
-   #   run: dotnet test --no-build --verbosity normal
-   # - name: publish deployment
-   #   run: dotnet publish -c Release -o ./publish
-   # - name: copy app to iis
-   #   run: Copy-Item -Path "B:\dev\dataplus-client\_work\dataplus-client\dataplus-client\publish\*" -Destination "B:\dev\dataplus-client\dataplus-client-publish" -Recurse -Force -verbose
-   # - name: remove placeholder html
-   #   run: Remove-Item -Path B:\dev\dataplus-client\dataplus-client-publish\app_offline.htm
