@@ -12,13 +12,11 @@ param
     [switch]$PreDeploy,
     [switch]$Deploy,
 
-    $Output = "${GIHUB_SHA}",
 
     # variables PreDeploy && Deploy
-    $WebSiteName = "testuzqaz",
-    $Domain_name = "test.uzqaz",
-    $PathCurrentInfo = "B:\dev\dataplus-client\_work\dataplus-client\dataplus-client",
-    $PathNewInfo = "B:\dev\dataplus-client\dataplus-client-publish",
+    $WebSiteName = "deployment",
+    $Domain_name = "deployment.com",
+    $PhysicalPath = "",
     $Port = 80
 
 )
@@ -47,15 +45,16 @@ if ($Publish) {
     if(!$?) { Exit $LASTEXITCODE }
 }
 
-if ($PreDeploy) {
-
-    # copy new path
-      & Copy-Item -Path ".\${ github.head_ref }.${ github.sha }\*" -Destination "B:\dev\dataplus-client\dataplus-client-publish\${ github.head_ref }.${ github.sha }" -Recurse -Force -verbose   
-}
 
 if ($Deploy) {
-    #switch new path
-    Set-Content $PathNewInfo\default.htm “PSCreated Default Page”
+    Import-Module WebAdministration
+
+    $website = Get-Website -Name $WebSiteName
+    if ($website -eq $null -or $website -eq '') {
+        New-Website -Name $WebSiteName -HostHeader $Domain_name -PhysicalPath $PhysicalPath -Port $Port
+    } else {
+        Set-ItemProperty ('IIS:\Sites\' + $WebSiteName) -Name physicalPath -Value $PhysicalPath
+    } 
 }
 
 # samples
