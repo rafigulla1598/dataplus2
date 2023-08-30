@@ -14,8 +14,8 @@ param
 
     $Output = "",
     # variables PreDeploy && Deploy
-    $WebSiteName = "deployment",
-    $Domain_name = "deployment.com",
+    $WebSiteName = "deployment2",
+    $Domain_name = "deployment.com2",
     $PhysicalPath = "",
     $Port = 80
 
@@ -51,7 +51,8 @@ if ($Deploy) {
 
     $website = Get-Website -Name $WebSiteName
     if ($website -eq $null -or $website -eq '') {
-        New-Website -Name $WebSiteName -HostHeader $Domain_name -PhysicalPath $PhysicalPath -Port $Port
+        New-WebAppPool -Name $WebSiteName
+        New-Website -Name $WebSiteName -ApplicationPool $WebSiteName -HostHeader $Domain_name -PhysicalPath $PhysicalPath -Port $Port
     } else {
         Set-ItemProperty ('IIS:\Sites\' + $WebSiteName) -Name physicalPath -Value $PhysicalPath
     } 
