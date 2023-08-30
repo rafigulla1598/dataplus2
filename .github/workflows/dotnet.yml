@@ -28,7 +28,7 @@ jobs:
       run: mkdir B:\dev\dataplus-client\dataplus-client-publish\${{ github.head_ref }}.${{ github.sha }}.${{ steps.short-sha.outputs.sha }}
     - name: copy
       #run: Copy-Item -Path ".\${{ github.head_ref }}.${{ github.sha }}.${{ steps.short-sha.outputs.sha }}\*" -Destination "B:\dev\dataplus-client\dataplus-client-publish\${{ github.head_ref }}.${{ github.sha }}.${{ steps.short-sha.outputs.sha }}" -Recurse -Force -verbose
-      run: ./build.ps1 -PreDeploy
+      run: ./build.ps1 -PreDeploy -Project $false
 ##    - name: fsdfsd
  #     run:  Start-Process powershell -verb runas -ArgumentList "-file B:\dev\dataplus-client\_work\dataplus-client\dataplus-client\build.ps1 -PreDeploy -Project $false"
     #- name: run predeploy scrypt
