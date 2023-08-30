@@ -19,15 +19,15 @@ jobs:
 
         
     - name: run restore scrypt
-      run: ./build.ps1 -Restore -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj ${{ github.head_ref }}.${{ github.sha }}.${{ steps.short-sha.outputs.sha }}
+      run: ./build.ps1 -Restore -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj ${{ github.head_ref }}.${{ github.sha }}
     - name: run build scrypt
-      run: ./build.ps1 -Build -Configuration TestInstance -Project .\DataPlusWeb\Server ${{ github.head_ref }}.${{ github.sha }}.${{ steps.short-sha.outputs.sha }}
+      run: ./build.ps1 -Build -Configuration TestInstance -Project .\DataPlusWeb\Server ${{ github.head_ref }}.${{ github.sha }}
     - name: run publish scrypt
-      run: ./build.ps1 -Publish -Configuration TestInstance -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj ${{ github.head_ref }}.${{ github.sha }}.${{ steps.short-sha.outputs.sha }}
+      run: ./build.ps1 -Publish -Configuration TestInstance -Project .\DataPlusWeb\Server\DataPlusWeb.Server.csproj ${{ github.head_ref }}.${{ github.sha }}
     - name: mkdir
       run: mkdir ${{ vars.CI_COPY_SPACE }}\${{ github.head_ref }}.${{ github.sha }}.${{ steps.short-sha.outputs.sha }}
     - name: copy
-      run: Copy-Item -Path ".\${{ github.head_ref }}.${{ github.sha }}.${{ steps.short-sha.outputs.sha }}\*" -Destination "B:\dev\dataplus-client\dataplus-client-publish\${{ github.head_ref }}.${{ github.sha }}.${{ steps.short-sha.outputs.sha }}" -Recurse -Force -verbose
+      run: Copy-Item -Path ".\${{ github.head_ref }}.${{ github.sha }}\*" -Destination "${{ vars.CI_COPY_SPACE }}\${{ github.head_ref }}.${{ github.sha }}" -Recurse -Force -verbose
 ##    - name: fsdfsd
  #     run:  Start-Process powershell -verb runas -ArgumentList "-file B:\dev\dataplus-client\_work\dataplus-client\dataplus-client\build.ps1 -PreDeploy -Project $false"
     #- name: run predeploy scrypt
