@@ -24,9 +24,9 @@ jobs:
       run: ./build.ps1 -Build -Configuration TestInstance -Project ${{ vars.CI_ROOT_SPACE }} ${{ github.head_ref }}.${{ github.sha }}
     - name: run publish scrypt
       run: ./build.ps1 -Publish -Configuration TestInstance -Project ${{ vars.CI_ROOT_SPACE }} ${{ github.head_ref }}.${{ github.sha }}
-    - name: mkdir
-      run: mkdir ${{ vars.CI_COPY_SPACE }}\${{ github.head_ref }}.${{ github.sha }}.${{ steps.short-sha.outputs.sha }}
-    - name: copy
+    - name: create new folder
+      run: mkdir ${{ vars.CI_COPY_SPACE }}\${{ github.head_ref }}.${{ github.sha }}
+    - name: copy to new folder
       run: Copy-Item -Path ".\${{ github.head_ref }}.${{ github.sha }}\*" -Destination "${{ vars.CI_COPY_SPACE }}\${{ github.head_ref }}.${{ github.sha }}" -Recurse -Force -verbose
 ##    - name: fsdfsd
  #     run:  Start-Process powershell -verb runas -ArgumentList "-file B:\dev\dataplus-client\_work\dataplus-client\dataplus-client\build.ps1 -PreDeploy -Project $false"
