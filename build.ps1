@@ -23,8 +23,8 @@ param
 
 )
 
-    github.head_ref = ${GITHUB_REF#refs/heads/}
-    github.sha = $(git rev-parse --short "$GITHUB_SHA") 
+    $github.head_ref = ${GITHUB_REF#refs/heads/}
+    $github.sha = $(git rev-parse --short "$GITHUB_SHA") 
     
 $ErrorActionPreference = "stop"
 
