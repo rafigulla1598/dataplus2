@@ -14,8 +14,8 @@ param
 
     $Output = "",
     # variables PreDeploy && Deploy
-    $WebSiteName = "deployment33312",
-    $Domain_name = "deployment.com33312",
+    $WebSiteName = "deployment333124",
+    $Domain_name = "deployment.com333124",
     $PhysicalPath = "",
     $Port = 80
 
@@ -47,15 +47,16 @@ if ($Publish) {
 
 
 if ($Deploy) {
-    Import-Module WebAdministration
+    & Import-Module WebAdministration
 
-    $website = Get-Website -Name $WebSiteName
+    & $website = Get-Website -Name $WebSiteName
     if ($website -eq $null -or $website -eq '') {
-        New-WebAppPool -Name $WebSiteName
-        New-Website -Name $WebSiteName -ApplicationPool $WebSiteName -HostHeader $Domain_name -PhysicalPath $PhysicalPath -Port $Port
+       & New-WebAppPool -Name $WebSiteName
+       & New-Website -Name $WebSiteName -ApplicationPool $WebSiteName -HostHeader $Domain_name -PhysicalPath $PhysicalPath -Port $Port
     } else {
-        Set-ItemProperty ('IIS:\Sites\' + $WebSiteName) -Name physicalPath -Value $PhysicalPath
+       & Set-ItemProperty ('IIS:\Sites\' + $WebSiteName) -Name physicalPath -Value $PhysicalPath
     } 
+       if(!$?) { Exit $LASTEXITCODE }
 }
 
 # samples
