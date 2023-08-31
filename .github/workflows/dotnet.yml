@@ -17,11 +17,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       
-    - name: run restore scrypt
+    - name: restore
       run: ./build.ps1 -Restore -Project ${{ vars.CI_SUB_DIR }} ${{ github.head_ref }}.${{ github.sha }}
-    - name: run build scrypt
+    - name: build
       run: ./build.ps1 -Build -Configuration TestInstance -Project ${{ vars.CI_SUB_DIR }} ${{ github.head_ref }}.${{ github.sha }}
-    - name: run publish scrypt
+    - name: publish
       run: ./build.ps1 -Publish -Configuration TestInstance -Project ${{ vars.CI_SUB_DIR }} ${{ github.head_ref }}.${{ github.sha }}
     - name: PreDeploy
       run: | 
