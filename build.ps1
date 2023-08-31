@@ -14,8 +14,8 @@ param
 
     $Output = "",
     # variables PreDeploy && Deploy
-    $WebSiteName = "deployment3",
-    $Domain_name = "deployment.com3",
+    $WebSiteName = "deployment3331",
+    $Domain_name = "deployment.com3331",
     $PhysicalPath = "",
     $Port = 80
 
