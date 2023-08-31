@@ -14,8 +14,8 @@ param
 
     $Output = "",
     # variables PreDeploy && Deploy
-    $WebSiteName = "USA.UZ3",
-    $Domain_name = "USA.UZ3",
+    $WebSiteName = "dataplus",
+    $Domain_name = "datapluswebtest.datafied.com",
     $PhysicalPath = "",
     $Port = 80
 
