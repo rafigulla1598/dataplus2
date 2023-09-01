@@ -28,4 +28,4 @@ jobs:
         mkdir ${{ vars.CI_COPY_DIR }}\${{ github.head_ref }}.${{ github.sha }}
         Copy-Item -Path ".\${{ github.head_ref }}.${{ github.sha }}\*" -Destination "${{ vars.CI_COPY_DIR }}\${{ github.head_ref }}.${{ github.sha }}" -Recurse -Force -verbose
     - name: Deploy
-      run: Start-Process powershell.exe -noprofile -Wait -WindowStyle Maximized -Verb runAs -ArgumentList "B:\dev\dataplus-client\_work\dataplus-client\dataplus-client\build.ps1 -Deploy -Project $false -PhysicalPath B:\dev\dataplus-client\dataplus-client-publish\${{ github.head_ref }}.${{ github.sha }}"
+      run: Start-Process powershell.exe -Verb runAs -ArgumentList "B:\dev\dataplus-client\_work\dataplus-client\dataplus-client\build.ps1 -Deploy -Project $false -PhysicalPath B:\dev\dataplus-client\dataplus-client-publish\${{ github.head_ref }}.${{ github.sha }}"
